@@ -1,6 +1,5 @@
 const ColorRange = ({ label, value, onChange }) => (
   <div>
-    {label}
     <input
       type="range"
       min={0}

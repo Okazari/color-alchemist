@@ -4,11 +4,31 @@ import faker from "faker";
 import ColorDeviation from "./ColorDeviation";
 import { useSetState } from "react-use";
 import ColorRange from "./ColorRange";
+import Button from "./Button";
+import { boxShadow1, radius } from "../styles";
 
-const AppContainer = styled.div`
-  background-color: white;
-  height: 100vh;
-  width: 100vw;
+const GameContainer = styled.div`
+  padding: 10px;
+  max-width: 500px;
+  background-color: #bdb285;
+  box-shadow: ${boxShadow1};
+  border-radius: ${radius};
+`;
+
+const GameInnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 500px;
+  background-color: #e9e2b4;
+  box-shadow: ${boxShadow1};
+  border-radius: ${radius};
+`;
+
+const Center = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const modelColor = {
@@ -24,26 +44,31 @@ const App = () => {
     yellow: 0,
   });
   return (
-    <AppContainer>
-      <ColorTile {...modelColor} />
-      <ColorRange
-        label="cyan"
-        value={playerColor.cyan}
-        onChange={(cyan) => setPlayerColor({ cyan })}
-      />
-      <ColorRange
-        label="magenta"
-        value={playerColor.magenta}
-        onChange={(magenta) => setPlayerColor({ magenta })}
-      />
-      <ColorRange
-        label="yellow"
-        value={playerColor.yellow}
-        onChange={(yellow) => setPlayerColor({ yellow })}
-      />
-      <ColorTile {...playerColor} />
-      <ColorDeviation from={modelColor} to={playerColor} />
-    </AppContainer>
+    <GameContainer>
+      <GameInnerContainer>
+        <Center>
+          <ColorTile {...modelColor} />
+          <ColorRange
+            label="cyan"
+            value={playerColor.cyan}
+            onChange={(cyan) => setPlayerColor({ cyan })}
+          />
+          <ColorRange
+            label="magenta"
+            value={playerColor.magenta}
+            onChange={(magenta) => setPlayerColor({ magenta })}
+          />
+          <ColorRange
+            label="yellow"
+            value={playerColor.yellow}
+            onChange={(yellow) => setPlayerColor({ yellow })}
+          />
+          <ColorTile {...playerColor} />
+          {/* <ColorDeviation from={modelColor} to={playerColor} /> */}
+        </Center>
+        <Button>Submit</Button>
+      </GameInnerContainer>
+    </GameContainer>
   );
 };
 
